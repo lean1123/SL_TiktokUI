@@ -1,30 +1,24 @@
 import classNames from 'classnames/bind';
-import { Wrapper as PropperWrapper } from '~/layout/Components/Proper';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCircleNotch,
     faCircleQuestion,
-    faCircleXmark,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faMagnifyingGlass,
     faRightFromBracket,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import 'tippy.js/dist/tippy.css';
-import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
-import { useEffect, useState } from 'react';
-import AccountItem from '~/componets/AccountItem';
 import Button from '~/componets/Button';
 import Menu from '../Proper/Menu';
-import { UploadIcon } from '~/componets/Icons/Icons';
+import { InboxIcon, MessageIcon, UploadIcon } from '~/componets/Icons/Icons';
 import Image from '~/componets/Image/Image';
+import Search from '../Search/Search';
 
 const cx = classNames.bind(styles);
 
@@ -52,8 +46,6 @@ const items = [
 ];
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-
     const isCurrentUser = true;
 
     const userMenuItems = [
@@ -89,51 +81,31 @@ function Header() {
         }
     };
 
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
-
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <img src={images.logo} alt="Tiktok" />
 
-                <HeadlessTippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PropperWrapper>
-                                <h4 className={cx('search-title')}>Tài khoản</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PropperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Tìm kiếm" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />
+                <Search />
 
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
                 <div className={cx('actions')}>
                     {isCurrentUser ? (
                         <>
                             <Tippy content="Upload video" placement="bottom" delay={[0, 200]}>
                                 <button className={cx('actions-btn')}>
                                     <UploadIcon />
+                                </button>
+                            </Tippy>
+
+                            <Tippy content="Message" placement="bottom" delay={[0, 200]}>
+                                <button className={cx('actions-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+
+                            <Tippy content="Inbox message" placement="bottom" delay={[0, 200]}>
+                                <button className={cx('actions-btn')}>
+                                    <InboxIcon />
                                 </button>
                             </Tippy>
                         </>
