@@ -12,6 +12,12 @@
     padding-bottom: 8px;
 }
 
+.menu-body {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
 // Menu item
 .menu-item {
     width: 100%;
@@ -35,6 +41,7 @@
     position: relative;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
 }
 
 .onBack-btn {

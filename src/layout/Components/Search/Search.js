@@ -66,45 +66,48 @@ function Search() {
     };
 
     return (
-        <HeadlessTippy
-            interactive
-            visible={showResult && searchResult.length > 0}
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PropperWrapper>
-                        <h4 className={cx('search-title')}>Tài khoản</h4>
-                        {searchResult.map((result) => (
-                            <AccountItem key={result.id} data={result} />
-                        ))}
-                    </PropperWrapper>
-                </div>
-            )}
-            onClickOutside={handleShowResult}
-        >
-            <div className={cx('search')}>
-                <input
-                    ref={inputRef}
-                    placeholder="Tìm kiếm"
-                    spellCheck={false}
-                    value={searchValue}
-                    onChange={(e) => {
-                        handleChange(e);
-                    }}
-                    onFocus={() => setShowResult(true)}
-                />
-                {!!searchValue && !loading && (
-                    <button className={cx('clear')} onClick={handleClear}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
+        // Use <div> tag to process warning from Tippy
+        <div>
+            <HeadlessTippy
+                interactive
+                visible={showResult && searchResult.length > 0}
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PropperWrapper>
+                            <h4 className={cx('search-title')}>Tài khoản</h4>
+                            {searchResult.map((result) => (
+                                <AccountItem key={result.id} data={result} />
+                            ))}
+                        </PropperWrapper>
+                    </div>
                 )}
+                onClickOutside={handleShowResult}
+            >
+                <div className={cx('search')}>
+                    <input
+                        ref={inputRef}
+                        placeholder="Tìm kiếm"
+                        spellCheck={false}
+                        value={searchValue}
+                        onChange={(e) => {
+                            handleChange(e);
+                        }}
+                        onFocus={() => setShowResult(true)}
+                    />
+                    {!!searchValue && !loading && (
+                        <button className={cx('clear')} onClick={handleClear}>
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                    )}
 
-                {loading && <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />}
+                    {loading && <FontAwesomeIcon className={cx('loading')} icon={faCircleNotch} />}
 
-                <button className={cx('search-btn')}>
-                    <SearchIcon />
-                </button>
-            </div>
-        </HeadlessTippy>
+                    <button className={cx('search-btn')}>
+                        <SearchIcon />
+                    </button>
+                </div>
+            </HeadlessTippy>
+        </div>
     );
 }
 
