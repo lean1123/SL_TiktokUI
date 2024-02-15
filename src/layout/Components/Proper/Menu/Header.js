@@ -3,6 +3,8 @@ import styles from './Menu.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
+import PropTypes from 'prop-types';
+
 const cx = classNames.bind(styles);
 
 function Header({ onBack, title }) {
@@ -15,5 +17,10 @@ function Header({ onBack, title }) {
         </header>
     );
 }
+
+Header.propTypes = {
+    onBack: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+};
 
 export default Header;

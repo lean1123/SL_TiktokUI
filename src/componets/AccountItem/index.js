@@ -24,7 +24,7 @@ function AccountItem({ data }) {
     );
 }
 
-AccountItem.prototype = {
+AccountItem.propTypes = {
     data: PropTypes.object.isRequired,
 };
 
