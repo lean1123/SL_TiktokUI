@@ -4,6 +4,7 @@ import Upload from '~/pages/Upload';
 import { HeaderOnly } from '~/layout';
 import Profile from '~/pages/Profile';
 import Search from '~/pages/Search';
+import Live from '~/pages/Live';
 import config from '~/config';
 
 const publicRoutes = [
@@ -29,6 +30,10 @@ const publicRoutes = [
         path: config.routes.upload,
         component: Upload,
         layout: HeaderOnly,
+    },
+    {
+        path: config.routes.live,
+        component: Live,
     },
 ];
 
